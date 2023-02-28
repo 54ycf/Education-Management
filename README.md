@@ -1,10 +1,16 @@
 # 架构设计文档
 
-部署文档请见：https://github.com/54ycf/Education-Management/blob/master/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3.md
+本文档主要解释了项目搭建的结构，框架的选择和理由等。此外，其他文档如下：
 
-更多请见：https://github.com/54ycf/Education-Management/tree/master/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3
+[部署文档](https://github.com/54ycf/Education-Management/blob/master/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3.md)
 
-以及接口文档：https://www.apifox.cn/apidoc/shared-26ad046a-1f80-4b30-be06-e3c21fde8509
+[数据库设计文档](https://github.com/54ycf/Education-Management/blob/master/项目文档/数据库设计.md)
+
+[测试结果](https://github.com/54ycf/Education-Management/blob/master/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.md)
+
+[接口文档](https://www.apifox.cn/apidoc/shared-26ad046a-1f80-4b30-be06-e3c21fde8509)
+
+[更多](https://github.com/54ycf/Education-Management/tree/master/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3)
 
 ## 展现层
 
@@ -105,4 +111,4 @@ nacos配置中心对seata服务的配置
 
 # 其他
 
-项目部分服务使用到Docker进行部署，将在部署文档中提到。
+项目部分服务使用到Docker进行部署，将在[部署文档](https://github.com/54ycf/Education-Management/blob/master/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3.md)中提到。
