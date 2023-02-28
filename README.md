@@ -1,6 +1,8 @@
 # 架构设计文档
 
-更多请见
+部署文档请见：https://github.com/54ycf/Education-Management/blob/master/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3/%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3.md
+
+更多请见：https://github.com/54ycf/Education-Management/tree/master/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3
 
 以及接口文档：https://www.apifox.cn/apidoc/shared-26ad046a-1f80-4b30-be06-e3c21fde8509
 
