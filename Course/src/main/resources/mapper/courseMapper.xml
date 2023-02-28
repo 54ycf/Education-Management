@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecnu.course.mapper.CourseMapper">
+
+    <select id="searchStuCourse" parameterType="com.ecnu.vo.query.StuSearchCourseQuery" resultType="com.ecnu.course.vo.SecCourseVo">
+        select *
+        from score
+                 NATURAL join sec_course
+                 NATURAL join course
+        where stu_no=#{stuNo} and years=#{years} and semester=#{semester}
+    </select>
+
+    <select id="searchNextTermProfessionPlan" parameterType="com.ecnu.vo.query.StuSearchNextTermQuery" resultType="com.ecnu.course.vo.SecCourseVo">
+        select *
+        from sec_course natural join course
+        where department=#{department} and semester=#{semester} and years=#{years} and big_type='专业教育课程' and grade_year=#{gradeYear}
+        and sec_course_id not in(
+            select sec_course_id from score where stu_no=#{stuNo}
+        )
+    </select>
+
+    <select id="searchNextTermCommonPlan" parameterType="com.ecnu.vo.query.StuSearchNextTermQuery" resultType="com.ecnu.course.vo.SecCourseVo">
+        select *
+        from sec_course natural join course
+        where big_type!='专业教育课程' and semester=#{semester} and years=#{years} and grade_year=#{gradeYear}
+          and sec_course_id not in(
+            select sec_course_id from score where stu_no=#{stuNo}
+        )
+    </select>
+
+    <select id="searchScore" parameterType="com.ecnu.vo.query.StuSearchCourseQuery" resultType="com.ecnu.course.vo.ScoreVo">
+        select *
+        from score
+                 NATURAL join sec_course
+                 NATURAL join course
+        where stu_no=#{stuNo} and years=#{years} and semester=#{semester}
+    </select>
+
+
+
+
+
+    <update id="updateScore" parameterType="com.ecnu.vo.param.SetScoreParam">
+        update score
+        set usual_score=#{usualScore},final_score=#{finalScore},
+            total_score=0.4*#{usualScore}+0.6*#{finalScore},
+            point = case
+                        when total_score>=95 then 4.0
+                        when total_score>=90 then 3.9
+                        when total_score>=85 then 3.8
+                        when total_score>=80 then 3.7
+                        when total_score>=75 then 3.6
+                        when total_score>=70 then 3.4
+                        when total_score>=65 then 3.2
+                        when total_score>=60 then 3.0
+                        else 2.0
+                end,
+            levels=case
+                       when point>=3.9 then 'A'
+                       when point>=3.7 then 'A-'
+                       when point>=3.6 then 'B'
+                       when point>=3.4 then 'B-'
+                       when point>=3.2 then 'C'
+                       when point>=3.0 then 'C-'
+                       else 'D'
+                end
+        where stu_no=#{stuNo} and sec_course_id=#{secCourseId}
+    </update>
+
+    <select id="selectTeacherCourse" parameterType="com.ecnu.vo.query.TeacherSearchCourseQuery" resultType="com.ecnu.course.vo.SecCourseVo">
+        select * from sec_course natural join course
+        where teacher_no=#{teacherNo} and years=#{years} and semester=#{semester}
+    </select>
+
+    <select id="getClassScores" parameterType="com.ecnu.vo.query.TeacherSearchStudentQuery" resultType="com.ecnu.bo.CourseScoreBo">
+        select *
+        from score
+                 NATURAL join sec_course
+                 NATURAL join course
+        where sec_course_id=#{secCourseId}
+    </select>
+
+
+
+
+
+
+
+    <select id="officeSearchPreviousCourse" parameterType="com.ecnu.vo.query.CourseConditionQuery" resultType="com.ecnu.course.vo.SecCourseVo">
+        select * from sec_course natural join course
+        <where>
+            <if test="courseId!=null">
+                and course_id=#{courseId}
+            </if>
+            <if test="name!=null and name!=''">
+                and name=#{name}
+            </if>
+            <if test="credit!=null and credit!=''">
+                and credit=#{credit}
+            </if>
+            <if test="teacher!=null and teacher!=''">
+                and teacher=#{teacher}
+            </if>
+            and grade_year=#{gradeYear} and department=#{department}
+        </where>
+    </select>
+
+    <select id="officeSearchLaterCourse" parameterType="com.ecnu.vo.query.CourseConditionQuery" resultType="com.ecnu.course.entity.Course">
+        select * from course
+        <where>
+            <if test="courseId!=null">
+                and course_id=#{courseId}
+            </if>
+            <if test="name!=null and name!=''">
+                and name=#{name}
+            </if>
+            <if test="credit!=null and credit!=''">
+                and credit=#{credit}
+            </if>
+            <if test="teacher!=null and teacher!=''">
+                and teacher=#{teacher}
+            </if>
+            and department=#{department}
+            and course_id not in (
+                select course_id from sec_course where grade_year=#{gradeYear}
+            )
+        </where>
+    </select>
+
+    <select id="searchScheduled" parameterType="com.ecnu.vo.query.CourseConditionQuery" resultType="com.ecnu.course.vo.SecCourseVo">
+        select * from sec_course natural join course
+        where years=#{years} and semester=#{semester} and department=#{department} and grade_year=#{gradeYear}
+    </select>
+</mapper>

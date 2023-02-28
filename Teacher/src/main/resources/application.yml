@@ -1,0 +1,65 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  port: 28082
+spring:
+
+
+
+  # 使用dev环境
+  profiles:
+    active: dev
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  application:
+    name: teacher-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        namespace: public
+    alibaba:
+      seata:
+        tx-service-group: shanghai
+# Mybatis
+mybatis:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  configuration:
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.ecnu.teacher.entity
+
+
+
+course-service:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule #负载均衡策略
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848  # seata server 所在的nacos
+      application: seata-server
+      username: nacos
+      password: nacos
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos

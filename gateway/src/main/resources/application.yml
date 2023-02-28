@@ -1,0 +1,43 @@
+server:
+  port: 28088
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+
+    gateway:
+      routes:
+        - id: office_route
+          uri: lb://office-service
+          predicates:
+            - Path=/office/**
+
+
+        - id: teacher_route
+          uri: lb://teacher-service
+          predicates:
+            - Path=/teacher/**
+
+
+        - id: student_route
+          uri: lb://student-service
+          predicates:
+            - Path=/student/**
+
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+    sentinel:
+      transport:
+        dashboard: localhost:9090

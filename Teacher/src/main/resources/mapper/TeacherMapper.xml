@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ecnu.teacher.mapper.TeacherMapper">
+
+
+
+
+
+<!--    <update id="updatePoint">-->
+<!--        update score-->
+<!--        set point = case-->
+<!--            when total_score>=95 then 4.0-->
+<!--            when total_score>=90 then 3.9-->
+<!--            when total_score>=85 then 3.8-->
+<!--            when total_score>=80 then 3.7-->
+<!--            when total_score>=75 then 3.6-->
+<!--            when total_score>=70 then 3.4-->
+<!--            when total_score>=65 then 3.2-->
+<!--            when total_score>=60 then 3.0-->
+<!--            else 2.0-->
+<!--            end-->
+<!--        where course_id=#{courseId} and stu_id=#{stuId} and sec_id=#{secId}-->
+<!--    </update>-->
+
+<!--    <update id="updateLevel">-->
+<!--        update score-->
+<!--        set levels=case-->
+<!--            when point>=3.9 then 'A'-->
+<!--            when point>=3.7 then 'A-'-->
+<!--            when point>=3.6 then 'B'-->
+<!--            when point>=3.4 then 'B-'-->
+<!--            when point>=3.2 then 'C'-->
+<!--            when point>=3.0 then 'C-'-->
+<!--            else 'D'-->
+<!--            end-->
+<!--        where course_id=#{courseId} and stu_id=#{stuId} and sec_id=#{secId}-->
+<!--    </update>-->
+
+
+
+</mapper>
